@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Card, CardTitle, CardBody } from 'reactstrap';
 import axios from "axios"
-import { Pagination, PaginationItem, PaginationLink, FormGroup, Label, Input, Button } from 'reactstrap';
+import { FormGroup, Label, Input, Button } from 'reactstrap';
 import { useHistory } from "react-router-dom"
-
+import PagnationForList from "./PagnationForList"
 export default function List() {
     const history = useHistory()
 
@@ -14,7 +14,6 @@ export default function List() {
     const [selectedPage, setSelectedPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const [pages, setPages] = useState([])
-    const listSize = [5, 10, 15, 20, 25, 30]
 
     //function
     useEffect(() => {
@@ -133,36 +132,12 @@ export default function List() {
 
 
                     </Table>
-                    <div className="d-flex justify-content-between">
-                        <Pagination aria-label="Page navigation example">
-
-                            <PaginationItem disabled={currentPage === 1}>
-                                <PaginationLink previous onClick={() => changeCurrentPage(currentPage - 1)} />
-                            </PaginationItem>
-                            {
-                                pages.map((obj) =>
-                                    <PaginationItem active={obj === currentPage} key={obj}>
-                                        <PaginationLink onClick={() => changeCurrentPage(obj)}>
-                                            {obj}
-                                        </PaginationLink>
-                                    </PaginationItem>
-                                )
-                            }
-                            <PaginationItem disabled={currentPage === pages[pages.length - 1]}>
-                                <PaginationLink next onClick={() => changeCurrentPage(currentPage + 1)} />
-                            </PaginationItem>
-
-                        </Pagination>
-
-                        <Input style={{ width: "7%" }} type="select" value={selectedPage} onChange={handlePageChange} name="pageChange" >
-                            {
-                                listSize.map((option, i) =>
-                                    <option key={i}>{option}</option>
-                                )
-                            }
-
-                        </Input>
-                    </div>
+                    <PagnationForList
+                        currentPage={currentPage}
+                        pages={pages}
+                        handlePageChange={handlePageChange}
+                        selectedPage={selectedPage}
+                        changeCurrentPage={changeCurrentPage} />
 
                 </CardBody>
 
