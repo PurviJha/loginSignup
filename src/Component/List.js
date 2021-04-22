@@ -92,6 +92,8 @@ export default function List() {
                 <CardTitle tag="h5" className="cardTitle">Users</CardTitle>
                 <CardBody>
                     <div className="d-flex flex-row-reverse"><Button color="primary" onClick={logout}>Logout</Button></div>
+                    <Button onClick={() => history.push("./priceGuide")}>PriceGuide</Button>
+
                     <div className="d-flex justify-content-center">
                         <FormGroup className="search">
                             <Label for="search" >Search</Label>

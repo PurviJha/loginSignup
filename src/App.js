@@ -8,6 +8,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import PriceGuide from "./Component/PriceGuide"
 
 export default function App() {
   return (
@@ -21,6 +22,9 @@ export default function App() {
         </Route>
         <Route exact path="/list">
           <List />
+        </Route>
+        <Route exact path="/priceGuide">
+          <PriceGuide />
         </Route>
       </Switch>
     </div>
